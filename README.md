@@ -39,3 +39,16 @@ meson setup build && cd build
 ninja
 ```
 You can then use `./url-info` from the build directory.
+
+### Installing
+#### Using nix
+```console
+$ nix build github:kir68k/url-info
+```
+
+#### Using native meson
+```bash
+meson setup build
+meson compile -C build
+meson install -C build
+```

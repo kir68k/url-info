@@ -33,6 +33,8 @@
                 "dev"
               ];
 
+              dontUseCmakeConfigure = true;
+
               nativeBuildInputs = with pkgs; [
                 ada
                 boost
@@ -41,20 +43,6 @@
                 ninja
                 pkg-config
               ];
-
-              # These have to be here cuz Nix tries to use cmake -.-
-              configurePhase = ''
-                meson setup build
-              '';
-
-              buildPhase = ''
-                ninja -C build
-              '';
-
-              installPhase = ''
-                mkdir -p $out/bin
-                cp build/$name $out/bin
-              '';
 
               meta = with pkgs.lib; {
                 description = "Outputs information for a given URL";

@@ -11,4 +11,4 @@ src = ['url-info.cpp']
 
 exe = executable('url-info', src,
   dependencies: [ada, boost],
-  install : false)
+  install : true)
