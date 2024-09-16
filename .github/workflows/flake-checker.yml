@@ -1,0 +1,26 @@
+name: flake-checker
+
+on:
+  push:
+    branches: [stream]
+  pull_request:
+
+jobs:
+  build:
+    name: Check inputs and build Nix flake
+    runs-on: self-hosted
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Check Nix Flake
+      uses: DeterminateSystems/flake-checker-action@main
+      with:
+        ignore-missing-flake-lock: false
+        fail-mode: true
+
+    - name: Install Nix
+      uses: DeterminateSystems/nix-installer-action@main
+
+    - name: Build url-info
+      run: nix build -L
