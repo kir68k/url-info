@@ -36,7 +36,7 @@
               nativeBuildInputs = with pkgs; [
                 ada
                 boost
-                cmake
+                cmakeMinimal
                 meson
                 ninja
                 pkg-config
@@ -48,18 +48,17 @@
               '';
 
               buildPhase = ''
-                cd build
-                ninja
+                ninja -C build
               '';
 
               installPhase = ''
                 mkdir -p $out/bin
-                cp $name $out/bin
+                cp build/$name $out/bin
               '';
 
               meta = with pkgs.lib; {
                 description = "Outputs information for a given URL";
-                homepage = "https://github.com/kir68k/random-stuff";
+                homepage = "https://github.com/kir68k/url-info";
                 license = with licenses; [ isc ];
                 maintainers = [ "Kirin Etheridge" ];
               };
