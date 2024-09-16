@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Check inputs and build Nix flake
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -21,6 +21,9 @@ jobs:
 
     - name: Install Nix
       uses: DeterminateSystems/nix-installer-action@main
+      with:
+        extra-conf: |-
+          extra-experimental-features = nix-command flakes ca-derivations
 
     - name: Build url-info
       run: nix build -L
